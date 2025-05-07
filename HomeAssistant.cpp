@@ -9,6 +9,7 @@ namespace HomeAssistant_Wrapper {
         HomeAssistant_MQTT* home = (HomeAssistant_MQTT*)arg;
         MQTT_CLIENT_DATA_T* mqtt_client = home->get_mqtt_client();
         home->connect();
+        home->setupEntity();
         return 0;
     }
     
@@ -269,6 +270,13 @@ void HomeAssistant_MQTT::set_incoming_topic(const char* topic) {
 }
 void HomeAssistant_MQTT::set_tls_config(const char* cert){
     mqtt_set_tls_config(mqtt_client, cert);
+}
+
+void HomeAssistant_MQTT::setupEntity(){
+    publish(discovery_topic, entity_type);
+    for (int i = 0; i < sizeof(entitys) / sizeof(entitys[0]); i++) {
+        publish(discovery_topic, entitys[i]);
+    }
 }
 
 HomeAssistant_MQTT::~HomeAssistant_MQTT(){
