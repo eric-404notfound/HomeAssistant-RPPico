@@ -1,5 +1,5 @@
 
-#include "../network/NetworkManager.h"
+#include "NetworkManager.h"
 
 #define MAX_MQTT_HANDLERS 10
 

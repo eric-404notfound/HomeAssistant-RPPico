@@ -15,7 +15,7 @@ static const char entity_type[] =
 "}";
 
 
-static char* entity_definitions[] = {
+static const char* entity_definitions[] = {
     "{"
         "\"name\":\"Haustuer\","
         "\"unique_id\":\"Haustuer_lock_\","
