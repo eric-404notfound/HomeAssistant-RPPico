@@ -4,6 +4,8 @@
 
 #define MAX_MQTT_HANDLERS 10
 
+#define HOMEASSISTANT_HEAP 1
+
 
 
 typedef void (*mqtt_handler_fn_t)(void* arg, char* payload, size_t len);

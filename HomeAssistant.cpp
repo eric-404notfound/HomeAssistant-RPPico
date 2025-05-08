@@ -8,6 +8,8 @@ namespace HomeAssistant_Wrapper {
     int64_t reconect_callback(alarm_id_t id, void* arg) {
         HomeAssistant_MQTT* home = (HomeAssistant_MQTT*)arg;
         MQTT_CLIENT_DATA_T* mqtt_client = home->get_mqtt_client();
+
+
         home->connect();
         home->setupEntity();
         return 0;
@@ -116,11 +118,14 @@ namespace HomeAssistant_Wrapper {
 
 HomeAssistant_MQTT::HomeAssistant_MQTT(const char *_host, uint16_t _port, const char *_client_id):hostname(_host), mqtt_client(NULL) {
     
-
+    // Heap
     mqtt_client = new_mqtt_client(hostname, _port, _client_id);
     if (!mqtt_client) {
         panic("MQTT client instance creation error");
     };
+
+    //Stack
+    
 
     for (int i = 0; i < MAX_MQTT_HANDLERS; i++) {
         handlers[i].topic = NULL;
